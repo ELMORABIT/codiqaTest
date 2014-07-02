@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Accueil | iPointe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link href="css/styles.css" rel="stylesheet">
+
+  <script src="js/scripts.js"></script>
+</head>
+<body>
+  <div data-role="page" data-control-title="Accueil" id="page1">
+      <div data-role="panel" id="panel3" data-position="left" data-display="reveal" data-theme="a">
+          <ul data-role="listview" data-divider-theme="h" data-inset="false">
+              <li data-role="list-divider" role="heading">
+                  Menu
+              </li>
+              <li data-theme="a">
+                  <a href="index.html" data-transition="slide">
+                      Accueil
+                  </a>
+              </li>
+              <li data-theme="a">
+                  <a href="page3.html" data-transition="slide">
+                      Administration
+                  </a>
+              </li>
+              <li data-theme="a">
+                  <a href="index.html" data-transition="slide">
+                      Réglages
+                  </a>
+              </li>
+              <li data-theme="a">
+                  <a href="page4.html" data-transition="slide">
+                      Aide
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <div data-theme="a" data-role="header">
+          <a data-controltype="panelbutton" data-role="button" href="#panel3" data-icon="grid" data-iconpos="notext" class="ui-btn-left">
+          </a>
+          <h4>
+              iPointe!
+          </h4>
+      </div>
+      <div data-role="content">
+          <h3>
+              MQL - Service de Pointage
+          </h3>
+          <hr style="height:3px; background-color:#ccc; border:0; margin-top:12px; margin-bottom:12px;"/>
+          <div id="googlemapsjs2" class="google-map" style="width: 288px; height: 200px; margin-left: auto; margin-right: auto">
+          </div>
+          <script type="text/javascript">
+                  window.CodiqaControls && window.CodiqaControls.register('googlemaps', 'googlemapsjs2', {
+              ready: function(control) {
+  
+                  control.options = {
+                      zoom: 14,
+                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                  };
+  
+                  control.el = document.getElementById(control._id);
+                  control.map = new google.maps.Map(control.el, control.options);
+  
+                  var geocoder = new google.maps.Geocoder();
+                  geocoder.geocode({
+                      'address': 'Kénitra'
+                  }, function(results, status) {
+                      if (status == google.maps.GeocoderStatus.OK) {
+  
+                          var marker = new google.maps.Marker({
+                              map: control.map,
+                              position: results[0].geometry.location
+                          });
+                          control.center = results[0].geometry.location;
+                          control.map.setCenter(control.center);
+                      }
+                  });
+  
+              }
+          });
+          </script>
+          <hr style="height:3px; background-color:#ccc; border:0; margin-top:12px; margin-bottom:12px;"/>
+          <div data-role="collapsible-set">
+              <div data-role="collapsible" data-collapsed="false">
+                  <h3>
+                      Via ID
+                  </h3>
+                  <div data-role="fieldcontain" data-controltype="textinput">
+                      <input name="" id="textinput1" placeholder="Saisir votre matricule" value="" data-mini="true" type="text"/>
+                  </div>
+                  <div data-role="fieldcontain" data-controltype="dateinput">
+                      <input name="" id="dateinput3" placeholder="Heure de Pointage" value="" type="datetime-l"/>
+                  </div>
+                  <input data-inline="true" data-icon="minus" data-iconpos="left" value="Annuler" type="submit"/>
+                  <input data-inline="true" data-icon="check" data-iconpos="right" value="Valider" type="submit"/>
+              </div>
+              <div data-role="collapsible">
+                  <h3>
+                      QRCode
+                  </h3>
+              </div>
+              <div data-role="collapsible">
+                  <h3>
+                      Face Recognition
+                  </h3>
+              </div>
+          </div>
+          <div data-controltype="textblock">
+              <br/>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
